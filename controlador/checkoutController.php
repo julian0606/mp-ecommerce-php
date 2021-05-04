@@ -3,7 +3,6 @@
  *               checkout
  *---------------------------------------------**/
 
- //curl -X POST -H "Content-Type: application/json" -H 'Authorization: Bearer APP_USR-4677822753283564-042700-2e3dfb8089afc897b1e242606e7a35fb-47540325' "https://api.mercadopago.com/users/test_user" -d '{"site_id":"MCO"}'
 
 function getRealIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -18,15 +17,14 @@ function getRealIP() {
 $url = $_SERVER['HTTP_REFERER'];
 
 $imgProducto = $url.$_POST['img'];
-//echo '<script>alert("'.$imgProducto.'");</script>';
 $nombreProducto = $_POST['title'];
 $precioUnitario = (int)$_POST['price'];
 $cantidad = (int)$_POST['unit'];
 
 require 'vendor/autoload.php';
 
-MercadoPago\SDK::setAccessToken('APP_USR-2572771298846850-120119-a50dbddca35ac9b7e15118d47b111b5a-681067803');
-MercadoPago\SDK::setIntegratorId('dev_24c65fb163bf11ea96500242ac130004');
+MercadoPago\SDK::setAccessToken(PROD_ACCESS_TOKEN);
+MercadoPago\SDK::setIntegratorId(INTEGRATOR_ID);
 
 // Crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
